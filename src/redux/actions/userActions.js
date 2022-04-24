@@ -7,7 +7,7 @@ export const userLogin = (reqObj) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      `${baseUrl}/api/v1/users/investor-login`,
+      `${baseUrl}/api/v1/users/user-login`,
       reqObj
     );
 

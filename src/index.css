@@ -25,7 +25,7 @@ code {
 h1 {
   font-size: 30px;
   font-weight: bold;
-  color: orangered;
+  color: #D12327;
 }
 
 p {
@@ -37,14 +37,14 @@ p {
 .btn1 {
   box-shadow: none !important;
   background-color: white !important;
-  color: orangered !important;
-  border: 1px solid orangered;
+  color: #D12327 !important;
+  border: 1px solid #D12327;
   padding: 5px !important;
   outline: none !important;
 }
 
 .btn1 a{
-  color: orangered !important;
+  color: #D12327 !important;
   background-color: white;
 }
 
@@ -117,8 +117,8 @@ button {
 .header .ant-btn {
   box-shadow: none !important;
   background-color: white !important;
-  color: orangered;
-  border: 1px solid orangered;
+  color: #D12327;
+  border: 1px solid #D12327;
   padding: 5px !important;
   outline: none !important;
 }
