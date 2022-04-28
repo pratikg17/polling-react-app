@@ -3,7 +3,7 @@ body {
   font-family: 'Montserrat', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: azure;
+  background-color: black;
 }
 
 code {
@@ -25,7 +25,7 @@ code {
 h1 {
   font-size: 30px;
   font-weight: bold;
-  color: #D12327;
+  color: black;
 }
 
 p {
@@ -36,21 +36,21 @@ p {
 
 .btn1 {
   box-shadow: none !important;
-  background-color: white !important;
-  color: #D12327 !important;
-  border: 1px solid #D12327;
+  background-color: red !important;
+  color: white !important;
+  border: 1px solid red;
   padding: 5px !important;
   outline: none !important;
 }
 
 .btn1 a{
-  color: #D12327 !important;
-  background-color: white;
+  color: white !important;
+  background-color: red;
 }
 
 .btn1-green {
   box-shadow: none !important;
-  background-color: white !important;
+  background-color: red !important;
   color: green !important;
   border: 1px solid green;
   padding: 5px !important;
@@ -59,12 +59,12 @@ p {
 
 .btn1-green a{
   color: green !important;
-  background-color: white;
+  background-color: red;
 }
 
 .btn1-blue {
   box-shadow: none !important;
-  background-color: white !important;
+  background-color: red !important;
   color: blue !important;
   border: 1px solid blue;
   padding: 5px !important;
@@ -72,7 +72,7 @@ p {
 }
 .tag-blue {
   box-shadow: none !important;
-  background-color: white !important;
+  background-color: red !important;
   color: blue !important;
   border: 1px solid blue;
   padding: 5px !important;
@@ -81,12 +81,12 @@ p {
 
 .btn1-blue a{
   color: blue !important;
-  background-color: white;
+  background-color: red;
 }
 
 .btn1-red {
   box-shadow: none !important;
-  background-color: white !important;
+  background-color: red !important;
   color: red !important;
   border: 1px solid red;
   padding: 5px !important;
@@ -95,7 +95,7 @@ p {
 
 .btn1-red a{
   color: red !important;
-  background-color: white;
+  background-color: red;
 }
 
 
@@ -110,21 +110,28 @@ button {
 
 .header {
   padding: 10px;
-  background-color: white;
+  background-color: #FF0000;
+
+}
+
+.header h1 {
+  color: white;
+  font-weight: bold;
 }
 
 
 .header .ant-btn {
   box-shadow: none !important;
   background-color: white !important;
-  color: #D12327;
-  border: 1px solid #D12327;
+  color: red;
+  border: 1px solid white;
   padding: 5px !important;
   outline: none !important;
 }
 
 .content {
   min-height: 90vh;
+  
 
 }
 
@@ -144,7 +151,7 @@ button {
 
 .login label,
 .login h1 {
-  color: white !important;
+  color: red !important;
   opacity: 0.6;
 }
 
@@ -156,7 +163,7 @@ button {
 .login-form input {
   background-color: #3333;
   border: none !important;
-  color: white;
+  color: red;
   opacity: 0.5;
 }
 
@@ -179,7 +186,7 @@ button {
 }
 
 .login a {
-  color: white;
+  color: red;
   opacity: 0.5;
 }
 
