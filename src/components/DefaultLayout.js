@@ -37,7 +37,7 @@ function DefaultLayout(props) {
               <h1>Poll Station</h1>
 
               <Dropdown overlay={menu} placement="bottomCenter">
-                <Button>{user.userName}</Button>
+                <Button>{user.username}</Button>
               </Dropdown>
             </div>
           </Col>
