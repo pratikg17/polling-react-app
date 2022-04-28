@@ -13,11 +13,10 @@ function DefaultLayout(props) {
         <Menu.Item as="div" key="polls">
           <Link to="/polls">Polls</Link>
         </Menu.Item>
-        <Menu.Item as="div" key="polls">
-          <Link to="/add-poll">Add Poll</Link>
+        <Menu.Item as="div" key="my-polls">
+          <Link to="/my-polls">My Polls</Link>
         </Menu.Item>
         <Menu.Item
-          as="div"
           key="logout-user"
           onClick={() => {
             localStorage.removeItem("user");
