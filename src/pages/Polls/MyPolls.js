@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Button, Space } from "antd";
-import { getAllMyPolls } from "../../redux/actions/pollActions";
-
 import { Link } from "react-router-dom";
+import { getAllMyPolls } from "../../redux/actions/pollActions";
 
 function MyPolls() {
   const dispatch = useDispatch();

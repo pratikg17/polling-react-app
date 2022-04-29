@@ -9,7 +9,6 @@ import { getAllPollsResult } from "../../redux/actions/pollActions";
 function Home() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alertsReducer);
-
   const { pollResults } = useSelector((state) => state.pollsReducer);
 
   const [pollsResult, setPollsResult] = useState([]);

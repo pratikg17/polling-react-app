@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import AddPoll from "./pages/Polls/AddPoll";
 import MyPolls from "./pages/Polls/MyPolls";
 import EditPoll from "./pages/Polls/EditPoll";
+import CastVote from "./pages/Vote/CastVote";
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
           path="/edit-poll/:pollId"
           exact
           component={EditPoll}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/cast-vote/:pollId"
+          exact
+          component={CastVote}
         ></ProtectedRoute>
         <Route path="/" exact component={Home}></Route>
       </BrowserRouter>

@@ -109,3 +109,28 @@ export const getPollById = (pollId) => async (dispatch) => {
     throw error;
   }
 };
+
+export const getPollResultById = (pollId) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+  try {
+    const response = await axios.get(
+      `${baseUrl}/api/v1/polls/poll-result-by-id`,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+        params: { poll_id: pollId },
+      }
+    );
+    console.log(response);
+    dispatch({
+      type: "GET_POLL_RESULT_BY_ID",
+      payload: response.data.polls[0],
+    });
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    throw error;
+  }
+};

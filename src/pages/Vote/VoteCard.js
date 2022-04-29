@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Pie } from "@ant-design/plots";
-import { Card, Tooltip, Popconfirm, Button, Empty } from "antd";
+import { Card, Tooltip, Button, Empty } from "antd";
+import { Link } from "react-router-dom";
 
 function VoteCard(props) {
   console.log("props", props);
   const ActionVote = (
     <Tooltip placement="left" title="Vote">
-      <Button className="btn1">VOTE NOW</Button>
+      <Link to={`/cast-vote/${props.poll.pollId}`}>
+        <Button className="btn1">VOTE NOW</Button>
+      </Link>
     </Tooltip>
   );
 

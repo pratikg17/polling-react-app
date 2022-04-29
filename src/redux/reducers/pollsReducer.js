@@ -3,6 +3,7 @@ const initialData = {
   allPolls: [],
   pollResults: [],
   selectedPoll: null,
+  selectedPollForVote: null,
 };
 
 export const pollsReducer = (state = initialData, action) => {
@@ -26,6 +27,11 @@ export const pollsReducer = (state = initialData, action) => {
       return {
         ...state,
         selectedPoll: action.payload,
+      };
+    case "GET_POLL_RESULT_BY_ID":
+      return {
+        ...state,
+        selectedPollForVote: action.payload,
       };
     default:
       return state;
