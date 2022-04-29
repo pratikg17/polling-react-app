@@ -25,11 +25,6 @@ function App() {
           component={AddPoll}
         ></ProtectedRoute>
         <ProtectedRoute
-          path="/add-poll"
-          exact
-          component={AddPoll}
-        ></ProtectedRoute>
-        <ProtectedRoute
           path="/edit-poll/:pollId"
           exact
           component={EditPoll}

@@ -3,7 +3,7 @@ import DefaultLayout from "../../components/DefaultLayout";
 import { Col, Row, Form, Input, Button, Space } from "antd";
 import Spinner from "../../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { addPoll } from "../../redux/actions/pollActions";
 import { message } from "antd";
 
@@ -30,9 +30,11 @@ function AddPoll() {
   let defaultOptions = [
     {
       optionName: "",
+      required: true,
     },
     {
       optionName: "",
+      required: true,
     },
   ];
 
@@ -41,7 +43,12 @@ function AddPoll() {
       {loading && <Spinner />}
       <Row justify="center mt-5">
         <Col lg={12} sm={24} xs={24} className="p-2">
-          <Form className="bs1 p-2" layout="vertical" onFinish={onFinish}>
+          <Form
+            className="bs1 p-2"
+            layout="vertical"
+            form={form}
+            onFinish={onFinish}
+          >
             <h3>Add New Poll</h3>
             <hr />
             <Form.Item
@@ -75,6 +82,12 @@ function AddPoll() {
                     >
                       <Form.Item
                         {...field}
+                        hidden
+                        name={[field.name, "required"]}
+                        fieldKey={[field.fieldKey, "required"]}
+                      ></Form.Item>
+                      <Form.Item
+                        {...field}
                         name={[field.name, "optionName"]}
                         fieldKey={[field.fieldKey, "optionName"]}
                         rules={[
@@ -84,12 +97,27 @@ function AddPoll() {
                         <Input placeholder="Poll Option Name" />
                       </Form.Item>
 
-                      <MinusCircleOutlined onClick={() => remove(field.name)} />
+                      <Button
+                        shape="circle"
+                        danger
+                        disabled={
+                          form.getFieldValue([
+                            "pollOptions",
+                            field.name,
+                            "required",
+                          ])
+                            ? true
+                            : false
+                        }
+                        icon={<MinusOutlined />}
+                        onClick={() => remove(field.name)}
+                      ></Button>
                     </Space>
                   ))}
                   <Form.Item>
                     <Button
                       type="dashed"
+                      danger
                       onClick={() => add()}
                       block
                       icon={<PlusOutlined />}
