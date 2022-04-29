@@ -31,7 +31,9 @@ function MyPolls() {
       render: (text, record) => (
         <Space size="middle">
           <Link to={`/edit-poll/${record.pollId}`}>
-            <Button type="primary">Edit</Button>
+            <Button type="dashed" danger>
+              Edit
+            </Button>
           </Link>
         </Space>
       ),

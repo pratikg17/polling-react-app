@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home/Home";
 import AddPoll from "./pages/Polls/AddPoll";
 import MyPolls from "./pages/Polls/MyPolls";
+import EditPoll from "./pages/Polls/EditPoll";
 
 function App() {
   return (
@@ -13,8 +14,26 @@ function App() {
       <BrowserRouter>
         <Route path="/login" exact component={Login}></Route>
         <Route path="/register" exact component={Register}></Route>
-        <Route path="/add-poll" exact component={AddPoll}></Route>
-        <Route path="/my-polls" exact component={MyPolls}></Route>
+        <ProtectedRoute
+          path="/my-polls"
+          exact
+          component={MyPolls}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/add-poll"
+          exact
+          component={AddPoll}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/add-poll"
+          exact
+          component={AddPoll}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          path="/edit-poll/:pollId"
+          exact
+          component={EditPoll}
+        ></ProtectedRoute>
         <Route path="/" exact component={Home}></Route>
       </BrowserRouter>
     </div>
@@ -22,3 +41,15 @@ function App() {
 }
 
 export default App;
+
+export function ProtectedRoute({ component: Component, ...restOfProps }) {
+  const isAuthenticated = localStorage.getItem("user");
+  return (
+    <Route
+      {...restOfProps}
+      render={(props) =>
+        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
+}
