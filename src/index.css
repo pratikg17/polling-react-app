@@ -195,3 +195,21 @@ button {
   border-radius: 10px;
   width: auto;
 }
+
+
+.vote {
+  width: 100%;
+  padding: 20px;
+
+}
+
+.voteItem {
+  width: auto;
+  margin: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.voteItemTitle {
+  text-align: center;
+  color: #555555;
+}
