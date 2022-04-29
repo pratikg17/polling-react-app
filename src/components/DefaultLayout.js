@@ -37,7 +37,6 @@ function DefaultLayout(props) {
           <Col lg={20} sm={24} xs={24}>
             <div className="d-flex justify-content-between">
               <h1>IGN - Poll Station</h1>
-
               <Dropdown overlay={menu} placement="bottomCenter">
                 <Button>{user.username}</Button>
               </Dropdown>

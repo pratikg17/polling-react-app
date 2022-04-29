@@ -36,21 +36,21 @@ p {
 
 .btn1 {
   box-shadow: none !important;
-  background-color: red !important;
+  background-color: #BF1223 !important;
   color: white !important;
-  border: 1px solid red;
+  border: 1px solid #BF1223;
   padding: 5px !important;
   outline: none !important;
 }
 
 .btn1 a{
   color: white !important;
-  background-color: red;
+  background-color: #BF1223;
 }
 
 .btn1-green {
   box-shadow: none !important;
-  background-color: red !important;
+  background-color: #BF1223 !important;
   color: green !important;
   border: 1px solid green;
   padding: 5px !important;
@@ -59,12 +59,12 @@ p {
 
 .btn1-green a{
   color: green !important;
-  background-color: red;
+  background-color: #BF1223;
 }
 
 .btn1-blue {
   box-shadow: none !important;
-  background-color: red !important;
+  background-color: #BF1223 !important;
   color: blue !important;
   border: 1px solid blue;
   padding: 5px !important;
@@ -72,7 +72,7 @@ p {
 }
 .tag-blue {
   box-shadow: none !important;
-  background-color: red !important;
+  background-color: #BF1223 !important;
   color: blue !important;
   border: 1px solid blue;
   padding: 5px !important;
@@ -81,21 +81,21 @@ p {
 
 .btn1-blue a{
   color: blue !important;
-  background-color: red;
+  background-color: #BF1223;
 }
 
-.btn1-red {
+.btn1-#BF1223 {
   box-shadow: none !important;
-  background-color: red !important;
-  color: red !important;
-  border: 1px solid red;
+  background-color: #BF1223 !important;
+  color: #BF1223 !important;
+  border: 1px solid #BF1223;
   padding: 5px !important;
   outline: none !important;
 }
 
-.btn1-red a{
-  color: red !important;
-  background-color: red;
+.btn1-#BF1223 a{
+  color: #BF1223 !important;
+  background-color: #BF1223;
 }
 
 
@@ -110,7 +110,7 @@ button {
 
 .header {
   padding: 10px;
-  background-color: #FF0000;
+  background-color: #BF1223;
 
 }
 
@@ -123,7 +123,7 @@ button {
 .header .ant-btn {
   box-shadow: none !important;
   background-color: white !important;
-  color: red;
+  color: #BF1223;
   border: 1px solid white;
   padding: 5px !important;
   outline: none !important;
@@ -151,7 +151,7 @@ button {
 
 .login label,
 .login h1 {
-  color: red !important;
+  color: #BF1223 !important;
   opacity: 0.6;
 }
 
@@ -163,7 +163,7 @@ button {
 .login-form input {
   background-color: #3333;
   border: none !important;
-  color: red;
+  color: #BF1223;
   opacity: 0.5;
 }
 
@@ -186,7 +186,7 @@ button {
 }
 
 .login a {
-  color: red;
+  color: #BF1223;
   opacity: 0.5;
 }
 
@@ -211,5 +211,6 @@ button {
 
 .voteItemTitle {
   text-align: center;
-  color: #555555;
+  color: #000000;
+  font-weight: bold;
 }

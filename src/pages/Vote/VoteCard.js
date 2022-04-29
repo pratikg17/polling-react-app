@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import { Pie } from "@ant-design/plots";
-import { Card, Tooltip, Popconfirm, Button } from "antd";
+import { Card, Tooltip, Popconfirm, Button, Empty } from "antd";
 
 function VoteCard(props) {
+  console.log("props", props);
   const ActionVote = (
     <Tooltip placement="left" title="Vote">
-      <Button>Vote </Button>
+      <Button className="btn1">VOTE NOW</Button>
     </Tooltip>
   );
 
-  const data = [
-    {
-      type: "Test 1",
-      value: 27,
-    },
-    {
-      type: "Test 2",
-      value: 25,
-    },
-  ];
-
-  const color = ["#FF5733", "#3AC335", "#19E012"];
   const config = {
     appendPadding: 10,
     angleField: "value",
@@ -44,26 +33,36 @@ function VoteCard(props) {
       {
         type: "element-active",
       },
+      {
+        type: "pie-statistic-active",
+      },
     ],
     statistic: {},
   };
 
   const Actions = [ActionVote];
 
+  let dataValues = [];
+  let color = [];
+  props.poll.votes.forEach((v) => {
+    dataValues.push({
+      type: v.optionName,
+      value: v.count,
+    });
+    color.push(v.color);
+  });
+
   return (
     <section>
       <div>
         <Card className="voteItem" actions={Actions}>
-          <h4 className="voteItemTitle">Test vs Test 2</h4>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It{" "}
-          </p>
-          <Pie {...config} data={data} color={color} />
+          <h4 className="voteItemTitle">{props.poll.pollName}</h4>
+          <p>{props.poll.pollDesc}</p>
+          {props.poll ? (
+            <Pie {...config} data={dataValues} color={color} />
+          ) : (
+            <Empty />
+          )}
         </Card>
       </div>
     </section>

@@ -1,28 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DefaultLayout from "../../components/DefaultLayout";
-import { Row, Col, Input, Form } from "antd";
+import Spinner from "../../components/Spinner";
+import { useSelector, useDispatch } from "react-redux";
+import { Row, Col, Empty } from "antd";
 import VoteCard from "../Vote/VoteCard";
+import { getAllPollsResult } from "../../redux/actions/pollActions";
 
 function Home() {
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.alertsReducer);
+
+  const { pollResults } = useSelector((state) => state.pollsReducer);
+
+  const [pollsResult, setPollsResult] = useState([]);
+  useEffect(() => {
+    setPollsResult(pollResults);
+  }, [pollResults]);
+
+  useEffect(() => {
+    dispatch(getAllPollsResult());
+  }, []);
+
   return (
     <DefaultLayout>
+      {loading && <Spinner />}
       <section className="vote">
         <Row type="flex" justify="center" align="middle" className="vote">
-          <Col md={12} sm={24} lg={8}>
-            <VoteCard />
-          </Col>
-          <Col md={12} sm={24} lg={8}>
-            <VoteCard />
-          </Col>
-          <Col md={12} sm={24} lg={8}>
-            <VoteCard />
-          </Col>
-          <Col md={12} sm={24} lg={8}>
-            <VoteCard />
-          </Col>
-          <Col md={12} sm={24} lg={8}>
-            <VoteCard />
-          </Col>
+          {pollResults ? (
+            pollsResult.map((poll) => {
+              return (
+                <Col md={12} sm={24} lg={8} key={poll._id}>
+                  <VoteCard poll={poll} />
+                </Col>
+              );
+            })
+          ) : (
+            <Empty />
+          )}
         </Row>
       </section>
     </DefaultLayout>

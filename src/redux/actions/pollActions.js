@@ -78,18 +78,10 @@ export const getAllMyPolls = () => async (dispatch) => {
 };
 
 export const getAllPollsResult = () => async (dispatch) => {
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user")).userId;
   dispatch({ type: "LOADING", payload: true });
   try {
     const response = await axios.get(
-      `${baseUrl}/api/v1/polls/get-poll-results`,
-      {
-        headers: {
-          Authorization: token, //the token is a variable which holds the token
-        },
-        params: { user_id: user },
-      }
+      `${baseUrl}/api/v1/polls/get-poll-results`
     );
     console.log(response);
     dispatch({ type: "GET_ALL_POLL_RESULTS", payload: response.data.results });
