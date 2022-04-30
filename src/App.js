@@ -35,7 +35,8 @@ function App() {
           exact
           component={CastVote}
         ></ProtectedRoute>
-        <ProtectedRoute path="/" exact component={Home}></ProtectedRoute>
+        {/* <ProtectedRoute path="/" exact component={Home}></ProtectedRoute> */}
+        <Route path="/" exact component={Home}></Route>
       </BrowserRouter>
     </div>
   );

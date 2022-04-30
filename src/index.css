@@ -3,7 +3,7 @@ body {
   font-family: 'Montserrat', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: white;
 }
 
 code {
@@ -182,6 +182,8 @@ button {
   transform: translateY(-50%, -50%);
   font-size: 40px;
   opacity: 0.8 !important;
+  color: white;
+  font-weight: bold;
 
 }
 
@@ -219,4 +221,31 @@ button {
   text-align: center;
   color: #000000;
   font-weight: bold;
+}
+
+.logo {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 50px;
+
+}
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.ant-menu > .ant-menu-item:hover,
+.ant-menu > .ant-menu-submenu:hover,
+.ant-menu > .ant-menu-item-active,
+.ant-menu> .ant-menu-submenu-active,
+.ant-menu > .ant-menu-item-open,
+.ant-menu> .ant-menu-submenu-open,
+.ant-menu > .ant-menu-item-selected,
+.ant-menu > .ant-menu-submenu-selected {
+  color: white !important;
+  border-bottom: 2px solid red;
+}
+
+.ant-menu a {
+  color: white !important;
 }

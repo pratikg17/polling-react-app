@@ -20,7 +20,6 @@ function VoteCard(props) {
             ]}
           >
             <h4 className="voteItemTitle">{props.poll.pollName}</h4>
-            <p>{props.poll.pollDesc}</p>
             {props.poll ? <VotePieChart votes={props.poll.votes} /> : <Empty />}
           </Card>
         </div>

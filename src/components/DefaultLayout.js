@@ -1,51 +1,93 @@
 import React from "react";
-import { Menu, Dropdown, Button, Space, Row, Col } from "antd";
+import { Menu, Dropdown, Button, Space, Row, Col, Layout } from "antd";
 import { Link } from "react-router-dom";
+import Login from "../pages/Login";
+const { Header, Content, Footer } = Layout;
 
 function DefaultLayout(props) {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const menu = (
-    <div>
-      <Menu>
-        <Menu.Item as="div" key="home">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item as="div" key="add-poll">
-          <Link to="/add-poll">Polls</Link>
-        </Menu.Item>
-        <Menu.Item as="div" key="my-polls">
-          <Link to="/my-polls">My Polls</Link>
-        </Menu.Item>
-        <Menu.Item
-          key="logout-user"
-          onClick={() => {
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
-        >
-          <li style={{ color: "orangered" }}>Logout</li>
-        </Menu.Item>
-      </Menu>
-    </div>
-  );
+  function getLocalStorage() {
+    return localStorage;
+  }
 
   return (
-    <div>
-      <div className="header bs1">
-        <Row gutter={16} justify="center">
-          <Col lg={20} sm={24} xs={24}>
-            <div className="d-flex justify-content-between">
-              <h1>IGN - Poll Station</h1>
-              <Dropdown overlay={menu} placement="bottomCenter">
-                <Button>{user.username}</Button>
-              </Dropdown>
-            </div>
-          </Col>
-        </Row>
-      </div>
-      <div className="content">{props.children}</div>
-    </div>
+    <Layout>
+      <Header
+        style={{
+          position: "fixed",
+          zIndex: 1,
+          width: "100%",
+          backgroundColor: "#BF1223",
+        }}
+      >
+        <div className="logo">
+          <img
+            height="50px"
+            width="50px"
+            src="https://prod.cloud.rockstargames.com/crews/sc/8628/735/publish/emblem/emblem_128.png"
+          ></img>
+        </div>
+        <Menu
+          mode="horizontal"
+          style={{
+            backgroundColor: "#BF1223",
+            color: "#F6F8F7",
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Menu.Item as="div" key="home">
+            <Link to="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item as="div" key="add-poll">
+            <Link to="/add-poll">Add Polls</Link>
+          </Menu.Item>
+          <Menu.Item as="div" key="my-polls">
+            <Link to="/my-polls">My Polls</Link>
+          </Menu.Item>
+          {getLocalStorage().getItem("user") ? (
+            <Menu.Item
+              key="logout-user"
+              onClick={() => {
+                localStorage.removeItem("user");
+                localStorage.removeItem("token");
+                window.location.href = "/login";
+              }}
+            >
+              <li>Logout</li>
+            </Menu.Item>
+          ) : (
+            <Menu.Item
+              key="login-user"
+              onClick={() => {
+                window.location.href = "/login";
+              }}
+            >
+              <li>Login</li>
+            </Menu.Item>
+          )}
+        </Menu>
+      </Header>
+
+      <Content
+        style={{
+          padding: "0 50px",
+          marginTop: 64,
+          backgroundColor: "#F6F8F7",
+        }}
+        className="site-layout"
+      >
+        {props.children}
+      </Content>
+      <Footer
+        style={{
+          textAlign: "center",
+          backgroundColor: "#BF1223",
+          color: "#F6F8F7",
+        }}
+      >
+        IGN Poller © {new Date().getFullYear()} Created by Pratik Gawand
+      </Footer>
+    </Layout>
   );
 }
 
