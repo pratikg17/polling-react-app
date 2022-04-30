@@ -132,13 +132,36 @@ export const getAllMyPolls = () => async (dispatch) => {
   }
 };
 
+export const deletePollById = (pollId) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+
+  let data = {
+    pollId: pollId,
+  };
+
+  try {
+    await axios.post(`${baseUrl}/api/v1/polls/delete-poll`, data, {
+      headers: {
+        Authorization: token, //the token is a variable which holds the token
+      },
+    });
+
+    dispatch({ type: "LOADING", payload: false });
+    dispatch(getAllMyPolls());
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 export const getAllPollsResult = () => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
   try {
     const response = await axios.get(
       `${baseUrl}/api/v1/polls/get-poll-results`
     );
-    console.log(response);
     dispatch({ type: "GET_ALL_POLL_RESULTS", payload: response.data.results });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
@@ -157,7 +180,6 @@ export const getPollById = (pollId) => async (dispatch) => {
       },
       params: { poll_id: pollId },
     });
-    console.log(response);
     dispatch({ type: "GET_POLL_BY_ID", payload: response.data.polls[0] });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
@@ -179,7 +201,6 @@ export const getPollResultById = (pollId) => async (dispatch) => {
         params: { poll_id: pollId },
       }
     );
-    console.log(response);
     dispatch({
       type: "GET_POLL_RESULT_BY_ID",
       payload: response.data.polls[0],

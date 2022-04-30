@@ -37,11 +37,9 @@ function Home() {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      console.log("TETS", lastMessage);
       let msg = JSON.parse(lastMessage.data);
       let pollResults = msg.polls;
       setMessageHistory((prev) => prev.concat(lastMessage));
-      console.log(pollResults);
       setPollsResult(pollResults);
       dispatch({ type: "GET_ALL_POLL_RESULTS", payload: pollResults });
     }

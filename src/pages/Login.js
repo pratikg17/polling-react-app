@@ -10,7 +10,6 @@ function Login() {
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("admin");
-    console.log("this", isAuthenticated);
     if (isAuthenticated) {
       history.push("/");
     }
@@ -18,7 +17,6 @@ function Login() {
 
   function onFinish(values) {
     dispatch(userLogin(values));
-    console.log(values);
   }
   return (
     <div className="login">

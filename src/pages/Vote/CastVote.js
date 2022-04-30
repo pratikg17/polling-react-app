@@ -50,10 +50,6 @@ function CastVote({ match }) {
     }
   }, [lastMessage, setMessageHistory]);
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
-
   let [poll, setPoll] = useState();
   let [userPollInfo, setUserPollInfo] = useState();
 
@@ -87,7 +83,6 @@ function CastVote({ match }) {
       setResult(data);
       setPollMap(pollMap);
       setIndexMap(indexMap);
-      console.log("result start", result);
     }
   }, [selectedPollForVote]);
 

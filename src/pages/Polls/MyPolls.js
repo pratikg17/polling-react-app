@@ -3,7 +3,7 @@ import DefaultLayout from "../../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Table, Button, Space } from "antd";
 import { Link } from "react-router-dom";
-import { getAllMyPolls } from "../../redux/actions/pollActions";
+import { deletePollById, getAllMyPolls } from "../../redux/actions/pollActions";
 
 function MyPolls() {
   const dispatch = useDispatch();
@@ -31,9 +31,19 @@ function MyPolls() {
         <Space size="middle">
           <Link to={`/edit-poll/${record.pollId}`}>
             <Button type="dashed" danger>
-              Edit
+              EDIT
             </Button>
           </Link>
+          <Button
+            className="btn1"
+            type="dashed"
+            danger
+            onClick={() => {
+              dispatch(deletePollById(record.pollId));
+            }}
+          >
+            DELETE
+          </Button>
         </Space>
       ),
     },

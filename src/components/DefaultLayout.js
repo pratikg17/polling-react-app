@@ -21,11 +21,13 @@ function DefaultLayout(props) {
         }}
       >
         <div className="logo">
-          <img
-            height="50px"
-            width="50px"
-            src="https://prod.cloud.rockstargames.com/crews/sc/8628/735/publish/emblem/emblem_128.png"
-          ></img>
+          <Link to="/">
+            <img
+              height="50px"
+              width="50px"
+              src="https://prod.cloud.rockstargames.com/crews/sc/8628/735/publish/emblem/emblem_128.png"
+            ></img>
+          </Link>
         </div>
         <Menu
           mode="horizontal"

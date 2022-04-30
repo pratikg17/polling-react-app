@@ -9,7 +9,6 @@ function Register() {
 
   function onFinish(values) {
     dispatch(userRegister(values));
-    console.log(values);
   }
 
   return (

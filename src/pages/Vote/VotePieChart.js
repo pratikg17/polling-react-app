@@ -2,7 +2,6 @@ import { Pie } from "@ant-design/plots";
 import React from "react";
 
 function VotePieChart({ votes }) {
-  console.log("VotePieChart", votes);
   const config = {
     appendPadding: 10,
     angleField: "value",
