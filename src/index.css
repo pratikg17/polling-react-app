@@ -200,8 +200,14 @@ button {
 .vote {
   width: 100%;
   padding: 20px;
-
 }
+
+.castVote {
+  width: 100%;
+  padding: 30px;
+}
+
+
 
 .voteItem {
   width: auto;
