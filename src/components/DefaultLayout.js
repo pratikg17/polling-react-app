@@ -17,6 +17,7 @@ function DefaultLayout(props) {
           zIndex: 1,
           width: "100%",
           backgroundColor: "#BF1223",
+          minHeight: "9vh",
         }}
       >
         <div className="logo">
@@ -33,6 +34,7 @@ function DefaultLayout(props) {
             color: "#F6F8F7",
             display: "flex",
             justifyContent: "end",
+            fontSize: "20px",
           }}
         >
           <Menu.Item as="div" key="home">
@@ -73,6 +75,7 @@ function DefaultLayout(props) {
           padding: "0 50px",
           marginTop: 64,
           backgroundColor: "#F6F8F7",
+          minHeight: "90vh",
         }}
         className="site-layout"
       >

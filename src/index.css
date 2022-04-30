@@ -131,7 +131,6 @@ button {
 
 .content {
   min-height: 90vh;
-  
 
 }
 
@@ -226,8 +225,9 @@ button {
 .logo {
   float: left;
   width: 50px;
-  height: 50px;
-  margin-right: 50px;
+  height: 40px;
+  /* margin-right: 50px; */
+  margin-top: 1px;
 
 }
 .site-layout .site-layout-background {
@@ -243,7 +243,7 @@ button {
 .ant-menu > .ant-menu-item-selected,
 .ant-menu > .ant-menu-submenu-selected {
   color: white !important;
-  border-bottom: 2px solid red;
+  border-bottom: 0 solid red !important;   
 }
 
 .ant-menu a {
