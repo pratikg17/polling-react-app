@@ -20,6 +20,7 @@ function CastVote({ match }) {
   );
   const [result, setResult] = useState([]);
   const [pollMap, setPollMap] = useState({});
+  const [indexMap, setIndexMap] = useState({});
   useEffect(() => {
     console.log(result);
   }, [result]);
@@ -43,16 +44,21 @@ function CastVote({ match }) {
     if (selectedPollForVote != null) {
       let data = [];
       let pollMap = [];
+      let indexMap = [];
       selectedPollForVote.votes.forEach((v, i) => {
         pollMap[i] = v;
+        indexMap[v.pollOptionId] = i;
         data.push({
           id: i,
           text: v.optionName,
           votes: v.count,
+          percentage: v.percentage,
         });
       });
       setResult(data);
       setPollMap(pollMap);
+      setIndexMap(indexMap);
+      console.log("result start", result);
     }
   }, [selectedPollForVote]);
 
@@ -68,9 +74,7 @@ function CastVote({ match }) {
     }
   }, [userPollData]);
 
-  function vote(item) {
-    console.log(item);
-    console.log(pollMap[item.id]);
+  function vote(item, results) {
     let optionData = pollMap[item.id];
     dispatch(
       castVote({
@@ -78,6 +82,7 @@ function CastVote({ match }) {
         pollOptionId: optionData.pollOptionId,
       })
     );
+    setResult(results);
   }
 
   const themeData = {
@@ -101,7 +106,7 @@ function CastVote({ match }) {
                 <Card className="p-5">
                   <h1>{poll.pollName}</h1>
                   <h5>{poll.pollDesc}</h5>
-                  {userPollInfo ? userPollInfo.optionName : "NA"}
+
                   {userPollInfo ? (
                     <div>
                       <LeafPoll
@@ -110,7 +115,7 @@ function CastVote({ match }) {
                         theme={themeData}
                         onVote={vote}
                         isVoted={true}
-                        isVotedId={1}
+                        isVotedId={indexMap[userPollInfo.pollOptionId]}
                       />
                     </div>
                   ) : (
