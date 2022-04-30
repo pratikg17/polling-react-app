@@ -2,6 +2,8 @@
 
 Deployed on [https://poll-react.herokuapp.com/](https://poll-react.herokuapp.com/)
 
+Github: [Backend](https://github.com/pratikg17/polling-server)
+
 1. Install Nodejs
 2. Run the following command to install dependencies `npm install`
 3. `npm start` to start the client app
