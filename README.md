@@ -23,7 +23,7 @@ Deployed on [https://poll-react.herokuapp.com/](https://poll-react.herokuapp.com
 
 ### Register Page
 
-![Screenshot](screenshots/resgiter.png)
+![Screenshot](screenshots/register.png)
 
 ## Tech Stack
 
