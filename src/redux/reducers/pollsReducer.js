@@ -4,6 +4,7 @@ const initialData = {
   pollResults: [],
   selectedPoll: null,
   selectedPollForVote: null,
+  userPollData: null,
 };
 
 export const pollsReducer = (state = initialData, action) => {
@@ -32,6 +33,11 @@ export const pollsReducer = (state = initialData, action) => {
       return {
         ...state,
         selectedPollForVote: action.payload,
+      };
+    case "GET_USER_VOTE_DATA":
+      return {
+        ...state,
+        userPollData: action.payload,
       };
     default:
       return state;

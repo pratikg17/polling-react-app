@@ -30,6 +30,61 @@ export const addPoll = (reqObj) => async (dispatch) => {
   }
 };
 
+export const castVote = (reqObj) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+
+  let data = {
+    ...reqObj,
+    userId,
+  };
+
+  try {
+    await axios.post(`${baseUrl}/api/v1/votes/cast-vote`, data, {
+      headers: {
+        Authorization: token, //the token is a variable which holds the token
+      },
+    });
+
+    dispatch({ type: "LOADING", payload: false });
+    dispatch(getPollResultById(reqObj.pollId));
+    dispatch(getAllPollsResult());
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+export const getUserPollData = (reqObj) => async (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).userId;
+  dispatch({ type: "LOADING", payload: true });
+
+  let data = {
+    ...reqObj,
+    userId,
+  };
+
+  try {
+    const response = await axios.post(
+      `${baseUrl}/api/v1/votes/user-vote`,
+      data,
+      {
+        headers: {
+          Authorization: token, //the token is a variable which holds the token
+        },
+      }
+    );
+
+    dispatch({ type: "GET_USER_VOTE_DATA", payload: response.data.vote[0] });
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 export const editPoll = (reqObj) => async (dispatch) => {
   const token = localStorage.getItem("token");
   const userId = JSON.parse(localStorage.getItem("user")).userId;
@@ -69,7 +124,7 @@ export const getAllMyPolls = () => async (dispatch) => {
       },
       params: { user_id: user },
     });
-    console.log(response);
+
     dispatch({ type: "GET_MY_POLLS", payload: response.data.polls });
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {

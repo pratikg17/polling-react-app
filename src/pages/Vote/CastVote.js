@@ -3,7 +3,11 @@ import DefaultLayout from "../../components/DefaultLayout";
 import Spinner from "../../components/Spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Empty, Card, Radio } from "antd";
-import { getPollResultById } from "../../redux/actions/pollActions";
+import {
+  castVote,
+  getPollResultById,
+  getUserPollData,
+} from "../../redux/actions/pollActions";
 import VotePieChart from "./VotePieChart";
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
@@ -11,19 +15,20 @@ import "react-leaf-polls/dist/index.css";
 function CastVote({ match }) {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alertsReducer);
-  const { selectedPollForVote } = useSelector((state) => state.pollsReducer);
+  const { selectedPollForVote, userPollData } = useSelector(
+    (state) => state.pollsReducer
+  );
   const [result, setResult] = useState([]);
   const [pollMap, setPollMap] = useState({});
   useEffect(() => {
     console.log(result);
   }, [result]);
 
-  let pollData = [];
   let [poll, setPoll] = useState();
-
-  useEffect(() => {}, [poll]);
+  let [userPollInfo, setUserPollInfo] = useState();
 
   const pollId = match.params.pollId;
+
   useEffect(() => {
     if (selectedPollForVote == null || selectedPollForVote.pollId != pollId) {
       dispatch(getPollResultById(pollId));
@@ -36,8 +41,6 @@ function CastVote({ match }) {
     }
 
     if (selectedPollForVote != null) {
-      console.log("selectedPollForVote", selectedPollForVote);
-      console.log("poll", poll);
       let data = [];
       let pollMap = [];
       selectedPollForVote.votes.forEach((v, i) => {
@@ -53,9 +56,28 @@ function CastVote({ match }) {
     }
   }, [selectedPollForVote]);
 
+  useEffect(() => {
+    if (userPollData == null || userPollData.pollId != pollId) {
+      dispatch(getUserPollData({ pollId }));
+    } else {
+      if (userPollData.pollId === pollId) {
+        setUserPollInfo(userPollData);
+      } else {
+        dispatch(getUserPollData({ pollId }));
+      }
+    }
+  }, [userPollData]);
+
   function vote(item) {
     console.log(item);
     console.log(pollMap[item.id]);
+    let optionData = pollMap[item.id];
+    dispatch(
+      castVote({
+        pollId: optionData.pollId,
+        pollOptionId: optionData.pollOptionId,
+      })
+    );
   }
 
   const themeData = {
@@ -64,12 +86,6 @@ function CastVote({ match }) {
     backgroundColor: "white",
     alignment: "center",
   };
-
-  const resData2 = [
-    { id: "0", text: "React", votes: 9 },
-    { id: "1", text: "Vue", votes: 7 },
-    { id: "2", text: "Angular", votes: 2 },
-  ];
 
   return (
     <DefaultLayout>
@@ -85,13 +101,26 @@ function CastVote({ match }) {
                 <Card className="p-5">
                   <h1>{poll.pollName}</h1>
                   <h5>{poll.pollDesc}</h5>
-                  {pollData.length}
-                  <LeafPoll
-                    type="multiple"
-                    results={result}
-                    theme={themeData}
-                    onVote={vote}
-                  />
+                  {userPollInfo ? userPollInfo.optionName : "NA"}
+                  {userPollInfo ? (
+                    <div>
+                      <LeafPoll
+                        type="multiple"
+                        results={result}
+                        theme={themeData}
+                        onVote={vote}
+                        isVoted={true}
+                        isVotedId={1}
+                      />
+                    </div>
+                  ) : (
+                    <LeafPoll
+                      type="multiple"
+                      results={result}
+                      theme={themeData}
+                      onVote={vote}
+                    />
+                  )}
                 </Card>
               </Col>
             </Row>
