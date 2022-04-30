@@ -11,6 +11,8 @@ import {
 import VotePieChart from "./VotePieChart";
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
+import { webSocketUrl } from "../../config";
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
 function CastVote({ match }) {
   const dispatch = useDispatch();
@@ -21,6 +23,33 @@ function CastVote({ match }) {
   const [result, setResult] = useState([]);
   const [pollMap, setPollMap] = useState({});
   const [indexMap, setIndexMap] = useState({});
+
+  const [socketUrl, setSocketUrl] = useState(
+    `${webSocketUrl}/api/v1/polls/get-live-poll-results-by-id`
+  );
+  const [messageHistory, setMessageHistory] = useState([]);
+  const { lastMessage, readyState } = useWebSocket(socketUrl);
+
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: "Connecting",
+    [ReadyState.OPEN]: "Open",
+    [ReadyState.CLOSING]: "Closing",
+    [ReadyState.CLOSED]: "Closed",
+    [ReadyState.UNINSTANTIATED]: "Uninstantiated",
+  }[readyState];
+
+  useEffect(() => {
+    if (lastMessage !== null) {
+      let msg = JSON.parse(lastMessage.data);
+      let pollResult = msg.poll;
+      setMessageHistory((prev) => prev.concat(lastMessage));
+      if (pollResult[0].pollId == pollId) {
+        setPoll(pollResult[0]);
+        dispatch({ type: "GET_POLL_RESULT_BY_ID", payload: pollResult[0] });
+      }
+    }
+  }, [lastMessage, setMessageHistory]);
+
   useEffect(() => {
     console.log(result);
   }, [result]);
